@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade crud</title>
+</head>
+<body>
+  <style>
+    h1{
+      text-align: center;
+      color: rgb(179, 177, 177);
+    }
+    body{
+      background-color: rgb(35, 36, 37);
+      padding: 20px;
+      margin: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+
+    }
+    .form input{
+       border-radius: 10px;
+       border: 1px solid black;
+       width: 95% ;
+       padding: 10px;
+       margin: 2px 0;
+       text-align: center;
+    }
+    .form {
+       padding: 15px;
+       border-radius: 5px;
+       max-width: 300px ;
+       margin: 20px auto;
+       box-shadow: 0 2px 4px  ;
+       background-color: rgb(194, 194, 184);
+    }
+    .form button{
+      cursor: pointer;
+      color: rgb(0, 0, 0);
+      padding: 3px;
+      border: none;
+      font-size: 20px ;
+      background-color: rgb(132, 131, 128);
+      margin-top: 5px;
+      width: 102%;
+      border-radius: 6px ;
+      font-family: Arial, Helvetica, sans-serif;
+
+    }
+    .form button:hover{
+      background-color: rgb(57, 56, 56);
+    }
+    table {
+      width: 70%;
+      text-align: center;
+      margin: 20px auto;
+      overflow: hidden ;
+      border-collapse: collapse;
+      border: 1px solid rgb(178, 223, 224);
+      background-color: antiquewhite;
+      box-shadow: 0 2px 4px rgb(37, 36, 36) ;
+      border-radius: 6px;
+    }
+    th, td {
+      text-align: center;
+      border: 2px solid rgb(163, 155, 143);
+      border-radius: 1px;
+      padding: 5px;
+      background-color: antiquewhite;
+    }
+      th {
+        background-color: rgb(241, 233, 233);
+        color: rgb(6, 6, 6);
+      }
+    .edit-btn{
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(120, 212, 181);
+    }
+    .delete-btn{
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(205, 66, 66);
+    }
+    .edit-btn:hover{
+      background: rgb(76, 163, 163);
+    }
+    .delete-btn:hover {
+      background: rgb(180, 50, 50);
+    }
+  </style>
+
+    <h1>Cadastro de Alunos</h1>
+
+   <div class="form">
+    <input type="text" placeholder="Digite seu nome" id="nome"><br>
+    <input type="number" placeholder="Digite sua Idade" id="idade"><br>
+    <input type="text" placeholder="Digite sua Turma" id="turma"><br>
+    <button onclick="criar()">Adicionar</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Turma</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody id="tabela"></tbody>
+  </table>
+
+
+<script>
+  //C
+  let dados = []; 
+  function criar() {
+
+   let nome = document.getElementById('nome').value;
+   let idade = document.getElementById('idade').value;
+   let turma = document.getElementById('turma').value;
+
+    if (nome && idade && turma) {
+     dados.push({ nome, idade, turma });
+     limparCampos();
+     listar();
+    } else {
+      alert('preencha tudo!');
+    }
+}
+ //R
+ function listar() {
+   let tabela = document.getElementById('tabela');
+   tabela.innerHTML = '';
+   dados.forEach((pessoa, index) => {
+    tabela.innerHTML +=`
+          <tr>
+            <td>${pessoa.nome}</td>
+            <td>${pessoa.idade}</td>
+            <td>${pessoa.turma}</td>
+            <td>
+              <button class="edit-btn" onclick="atualizar(${index})">Editar</button>
+              <button class="delete-btn" onclick="deletar(${index})">Excluir</button>
+            </td>
+          </tr>`;
+   });
+}
+
+//U
+function atualizar(index){
+   let nome = dados[index];
+   let novoNome = prompt('Digite um Novo nome:', dados.nome);
+   let novaIdade = prompt('Digite uma uma idade: ', dados.idade);
+   let novaTurma = prompt('Digite um novo curso', dados.turma);
+
+   if (novoNome && novaIdade && novaTurma) {
+    dados[index] = {nome: novoNome, idade: novaIdade, turma: novaTurma};
+    listar();
+   }
+}
+
+//D
+function deletar(index) {
+  if (confirm('tem certeza que deseja excluir')) {
+    dados.splice(index, 1);
+    listar()
+  }
+}
+//limpar campos
+function limparCampos() {
+     document.getElementById("nome").value = "";
+     document.getElementById("idade").value = "";
+     document.getElementById("turma").value = "";
+}
+
+</script>
+
+</body>
+</html>

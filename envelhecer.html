@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro</title>
+</head>
+<body>
+    <h1>cadastro de pessoas/envelhecer</h1>
+
+    <input type="text" placeholder="digite seu nome"><br>
+    <input type="text" placeholder="digite sua idade"><br>
+    <input type="text" placeholder="digite sua profissao"><br>
+    <button onclick="criar()">Adicionar</button>
+
+ <script>
+    let dados = [];
+    function criar() {
+     
+    let Nome = document.getElementById("nome").value;
+    let idade = document.getElementById("idade").value;
+    let profissao = document.getElementById("profissao").value;
+
+    if (nome && idade && turma) {
+     dados.push({nome, idade, profissao});
+     limparCampos();
+     listar();
+    } else {
+        alert("Preenchas tudo!!");
+    }
+ }
+    
+     function listar() {
+    
+
+
+     }
+
+
+
+
+
+
+
+
+     function limparCampos() {
+       document.getElementById("nome").value = "";
+       document.getElementById("idade").value = "";
+       document.getElementById("profissao").value = "";
+
+     }
+
+
+
+
+
+ </script>
+
+
+
+
+</body>
+</html>

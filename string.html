@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>strings</title>
+</head>
+<body>
+    <h1>Manipulacao de strings</h1>
+
+    <input type=" text" id="entrada" placeholder="palavra 1"> <br>
+    
+    <button onclick="analisar()">Analisar palavras</button><br>
+
+     <div id="resultado"></div>
+
+   <script>
+
+    function analisar() {
+      let palavra = document.getElementById("entrada").value;
+      let resultado = document.getElementById("resultado");
+
+      if (palavra.length === 0) {
+        resultado.innerHTML = "<p> Digite uma palavra!</p>";
+        return;
+      }
+
+      // Informações sobre a palavra
+      let tamanho = palavra.length;
+      let primeira = palavra[0];
+      let ultima = palavra[palavra.length - 1];
+      let temVogal = /[aeiouAEIOU]/.test(palavra);
+      let invertida = palavra.split("").reverse().join("");
+
+      resultado.innerHTML = `
+        <p><b>Palavra:</b> ${palavra}</p>
+        <p><b>Tamanho:</b> ${tamanho} letras</p>
+        <p><b>Primeira letra:</b> ${primeira}</p>
+        <p><b>Última letra:</b> ${ultima}</p>
+        <p><b>Contém vogais?</b> ${temVogal ? "Sim" : "Não"}</p>
+        <p><b>Invertida:</b> ${invertida}</p>
+      `;
+    }
+
+
+
+   </script>
+
+    
+</body>
+</html>

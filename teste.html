@@ -29,5 +29,38 @@
       transform: scale(1.05);
     }
     .heart {
-      font-size: 50px
-    } 
+      font-size: 50px;
+      color: red;
+      transition: 0.3s;
+    }
+    .message {
+      position: absolute;
+      text-align: center;
+      opacity: 0;
+      transition: 0.5s;
+      padding: 10px;
+      color: #d63384;
+      font-weight: bold;
+    }
+    .box.open .heart {
+      opacity: 0;
+    }
+    .box.open .message {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" onclick="openBox(this)">
+    <div class="heart">❤️</div>
+    <div class="message">Você é meu maior presente! 💕</div>
+  </div>
+
+  <script>
+    function openBox(el) {
+      el.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
+    

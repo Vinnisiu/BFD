@@ -1,0 +1,58 @@
+$cor-azul: #3498db;
+$cor-verde: #27ae60;
+$cor-texto: #333;
+$fundo-body: #f9f9f9;
+$fonte: 'Arial', sans-serif;
+
+body {
+  font-family: $fonte;
+  background-color: $fundo-body;
+  color: $cor-texto;
+  margin: 0;
+}
+
+header {
+  background-color: white;
+  padding: 15px;
+
+  nav.menu {
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+
+      li {
+        margin: 0 20px;
+
+        a {
+          text-decoration: none;
+          color: $cor-azul;
+          font-size: 18px;
+
+          &:hover {
+            color: white;
+            background-color: $cor-azul;
+          }
+        }
+      }
+    }
+  }
+}
+
+main {
+  text-align: center;
+  margin-top: 50px;
+
+  .btn {
+    background-color: $cor-verde;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #219a52;
+    }
+  }
+}

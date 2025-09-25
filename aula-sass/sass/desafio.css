@@ -1,0 +1,46 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+}
+
+header {
+  background-color: white;
+  padding: 15px;
+}
+header nav.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+header nav.menu ul li {
+  margin: 0 20px;
+}
+header nav.menu ul li a {
+  text-decoration: none;
+  color: #3498db;
+  font-size: 18px;
+}
+header nav.menu ul li a:hover {
+  color: white;
+  background-color: #3498db;
+}
+
+main {
+  text-align: center;
+  margin-top: 50px;
+}
+main .btn {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+main .btn:hover {
+  background-color: #219a52;
+}
+
+/*# sourceMappingURL=desafio.css.map */

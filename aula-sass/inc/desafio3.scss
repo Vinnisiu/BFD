@@ -1,0 +1,57 @@
+$cor-azul: #3498db;
+$cor-verde: #27ae60;
+$cor-laranja: #e67e22;
+$cor-texto: #333;
+$fundo-body: #f9f9f9;
+$fonte: 'Arial', sans-serif;
+
+body {
+  font-family: $fonte;
+  background-color: $fundo-body;
+  color: $cor-texto;
+  margin: 0;
+  padding: 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &--web {
+    background-color: #ebf3fd;
+    border-left: 5px solid $cor-azul;
+  }
+
+  &--design {
+    background-color: #ebf7ed;
+    border-left: 5px solid $cor-verde;
+  }
+
+  &--marketing {
+    background-color: #fdf2e9;
+    border-left: 5px solid $cor-laranja;
+  }
+}

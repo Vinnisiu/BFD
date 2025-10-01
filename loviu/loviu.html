@@ -1,88 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coração Interativo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coração interativo — Eu te amo</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
-    body {
-      background-color: #121212;
-      font-family: 'Poppins', sans-serif;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-    .heart {
-      font-size: 6rem;
-      color: #ff1493;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.3s ease;
-      text-shadow: 0 0 15px #ff1493;
-    }
-    .heart:hover {
-      transform: scale(1.2);
-      text-shadow: 0 0 25px #ff69b4;
-    }
-    .content {
-      margin-top: 30px;
-      text-align: center;
-      max-width: 320px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
-      border-radius: 15px;
-      background: #1e1e1e;
-      padding: 20px;
-      box-shadow: 0 0 20px #ff1493;
-      border: 2px solid #ff1493;
-    }
-    .content.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .content img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #ff1493;
-      margin-bottom: 15px;
-    }
-    .content p {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #ff1493;
-      text-shadow: 0 0 10px #ff1493;
-      margin: 0;
-    }
+    :root{--pink:#ff5c8a;--bg:#fff7fb}
+    body{background-color: #2c2727; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--bg),#fff);}
+    .card{background:#3e3030;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:36px;max-width:520px;width:92%;text-align:center}
+    .heart{width:120px;height:120px;margin:0 auto;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .18s ease}
+    .heart svg{width:100%;height:100%;filter:drop-shadow(0 6px 12px rgba(255,92,138,0.18))}
+    .heart:active{transform:scale(.94)}
+    .message{font-size:28px;margin-top:18px;opacity:0;transform:translateY(8px);transition:all .5s ease;color:#e91e63;font-weight:700}
+    .message.show{opacity:1;transform:translateY(0)}
+    .kittens{margin-top:20px;max-width:420px;margin-left:auto;margin-right:auto;opacity:0;transform:scale(.96);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    .kittens.show{opacity:1;transform:scale(1)}
+    @media (max-width:420px){.heart{width:96px;height:96px}.message{font-size:22px}}
   </style>
 </head>
-<body>
-<h1> Clique no Coração</h1>
-  <div class="heart" id="heart">❤️</div>
+<body class="mix-blend-color bg-red-600">
+  <div class="card">
+    <div class="heart" id="heart" title="Clique para ver a surpresa">
+      <svg viewBox="0 0 24 24" id="heartSvg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#ff8ab3"/>
+            <stop offset="1" stop-color="#ff4673"/>
+          </linearGradient>
+        </defs>
+        <path id="p" fill="url(#g)" d="M12 21s-7.2-4.6-9.2-7.2C-0.3 9.2 3.3 4 7.6 5.6 9.4 6.3 10 8 12 9.7c2-1.7 2.6-3.4 4.4-4.1 4.3-1.6 7.9 3.6 4.8 8.2C19.2 16.4 12 21 12 21z"/>
+      </svg>
+    </div>
 
-  <div class="content" id="content">
-    <img src="juia 2025-10-01 à(s) 14.50.47_5ed58683.jpg" alt="Foto do casal" />
-    <p>Eu te amo</p>
+    <div class="message" id="message">Eu te amo ❤️</div>
+
+    <div class="kittens" id="kittens">
+      <img src="https://i.pinimg.com/originals/50/ba/82/50ba82fd9d252532902352f1622321de.jpg" alt="Dois gatinhos, um preto e um branco, se abraçando" style="width:100%;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,0.15)" />
+    </div>
+
   </div>
 
   <script>
     const heart = document.getElementById('heart');
-    const content = document.getElementById('content');
+    const message = document.getElementById('message');
+    const kittens = document.getElementById('kittens');
+    const heartPath = document.getElementById('p');
 
-    heart.addEventListener('click', () => {
-      content.classList.toggle('show');
+    let shown = false;
+
+    function popHeart(){
+      heart.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.18)' },
+        { transform: 'scale(0.98)' },
+        { transform: 'scale(1)' }
+      ], { duration: 420, easing: 'cubic-bezier(.2,.9,.2,1)' });
+    }
+
+    heart.addEventListener('click', ()=>{
+      if(!shown){
+        popHeart();
+        message.classList.add('show');
+        kittens.classList.add('show');
+        heartPath.animate([
+          { filter: 'brightness(1)' },
+          { filter: 'brightness(1.25)' },
+          { filter: 'brightness(1)' }
+        ], { duration: 700, iterations: 2 });
+        shown = true;
+      } else {
+        message.classList.remove('show');
+        kittens.classList.remove('show');
+        shown = false;
+      }
     });
-  </script>
 
+    heart.setAttribute('tabindex','0');
+    heart.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); heart.click(); }});
+  </script>
 </body>
 </html>
